@@ -1,6 +1,6 @@
 package com.portfolio.reel_reviews;
 
-
+import java.util.function.Predicate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,5 +21,9 @@ public class FilmService {
 	public void addFilm(String title, int year,  String director, String star, String review ) {
 		Film film = new Film(++filmCount, title, year, director, star, review );
 		films.add(film);
+	}
+	public void deleteById(int id) {
+		Predicate <? super Film> predicate = film -> film.getId() == id;
+		films.removeIf(predicate);
 	}
 }
