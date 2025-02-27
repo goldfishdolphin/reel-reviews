@@ -32,5 +32,11 @@ public class FilmController {
 		
 		return "redirect:film-list";
 	}
+	
+@RequestMapping("delete-film")
+public String deleteFilm(@RequestParam int id) {
+	filmService.deleteById(id);
+	return "redirect:film-list";
+}
 
 }
