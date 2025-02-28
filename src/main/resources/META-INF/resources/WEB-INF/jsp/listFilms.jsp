@@ -35,6 +35,8 @@
 						<td>${film.review}</td>
 						<td><a href="delete-film?id=${film.id}"
 							class="btn btn-warning">Delete</a></td>
+						<td><a href="update-film?id=${film.id}"
+							class="btn btn-primary">Edit</a></td>
 					</tr>
 				</c:forEach>
 
