@@ -1,13 +1,16 @@
 package com.portfolio.reel_reviews;
+import jakarta.validation.constraints.Size;
+
+
 
 public class Film {
-	public Film(int id, String title, int year, String director, String stars, String review) {
+	public Film(int id, String title, int year, String director, String star, String review) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.year = year;
 		this.director = director;
-		this.stars = stars;
+		this.star = star;
 		this.review = review;
 	}
 
@@ -15,7 +18,8 @@ public class Film {
 	private String title;
 	private int year;
 	private String director;
-	private String stars;
+	private String star;
+	@Size(min=10, message= "Enter at least 10 characters")
 	private String review;
 
 	public int getId() {
@@ -50,12 +54,12 @@ public class Film {
 		this.director = director;
 	}
 
-	public String getStars() {
-		return stars;
+	public String getStar() {
+		return star;
 	}
 
-	public void setStars(String stars) {
-		this.stars = stars;
+	public void setStar(String star) {
+		this.star = star;
 	}
 
 	public String getReview() {
@@ -68,7 +72,7 @@ public class Film {
 
 	@Override
 	public String toString() {
-		return "Film [id=" + id + ", title=" + title + ", year=" + year + ", director=" + director + ", stars=" + stars
+		return "Film [id=" + id + ", title=" + title + ", year=" + year + ", director=" + director + ", star=" + star
 				+ ", review=" + review + "]";
 	}
 
