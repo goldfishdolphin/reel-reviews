@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import jakarta.validation.Valid;
+
 @Service
 public class FilmService {
 
@@ -36,7 +38,9 @@ public class FilmService {
 		return film;
 	}
 
-	public void updateById(int id) {
-		System.out.print(id);
+	public void updateById(@Valid Film film) {
+		deleteById(film.getId());
+		System.out.print(film);
+		films.add(film);
 	}
 }

@@ -51,18 +51,20 @@ public class FilmController {
 		return "redirect:film-list";
 	}
 
-//	@RequestMapping(value = "update-film", method = RequestMethod.GET)
-//	public String showUpdateFilm(@RequestParam int id, ModelMap model) {
-//		return "film";
-//	}
-//	
-//	@RequestMapping(value = "update-film", method = RequestMethod.POST)
-//	public String updateFilm(ModelMap model, @Valid Film film, BindingResult result) {
-//		if (result.hasErrors()) {
-//			return "film";
-//		}
-//		filmService.addFilm(film.getTitle(), film.getYear(), film.getDirector(), film.getStars(), film.getReview());
-//		return "redirect:film-list";
-//	}
+	@RequestMapping(value = "update-film", method = RequestMethod.GET)
+	public String showUpdateFilm(@RequestParam int id, ModelMap model) {
+		Film film = filmService.findFilmById(id);
+		model.addAttribute("film", film);
+		return "film";
+	}
+	
+	@RequestMapping(value = "update-film", method = RequestMethod.POST)
+	public String updateFilm(ModelMap model, @Valid Film film, BindingResult result) {
+		if (result.hasErrors()) {
+			return "film";
+		}
+		filmService.updateById(film);
+		return "redirect:film-list";
+	}
 	
 }
