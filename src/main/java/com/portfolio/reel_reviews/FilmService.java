@@ -33,7 +33,6 @@ public class FilmService {
 	public Film findFilmById(int id) {
 		Predicate<? super Film> predicate = film -> film.getId() == id;
 		Film film = films.stream().filter(predicate).findFirst().get();
-		System.out.print(film);
 		return film;
 	}
 

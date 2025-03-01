@@ -11,15 +11,17 @@
 <body>
 <div  class="container">
 <h1>Add details of a new film</h1>
-<form method ="post">
-Title: <input type="text" name ="title">
-Review: <input type="text" name ="review">
-Stars: <input type="text" name ="stars">
-Year: <input type="number" name ="year">
-Director: <input type="text" name ="director">
-<input class="btn btn-success" type="submit">
-</form>
-	
+<form:form method ="post" modelAttribute="film">
+<form:input type="hidden" path="id" />
+Title: <form:input type="text" path ="title" placeholder="Enter the title"/>
+Review: <form:input type="text" path ="review"/>
+<form:errors path="review" cssClass="text-warning" />
+Stars: <form:input type="text" path ="star"/>
+Year: <form:input type="number" path ="year"/>
+Director: <form:input type="text" path ="director"/>
+<form:input type="hidden" path="id" />
+<input class="btn btn-success" type="submit"/>
+</form:form>
 	</div>
 	<script src="webjars/bootstrap/5.3.0/js/bootstrap.min.js"></script>
 	<script src="webjars/jquery/3.7.1/jquery.min.js"></script>

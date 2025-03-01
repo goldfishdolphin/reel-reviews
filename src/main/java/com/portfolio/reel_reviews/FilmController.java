@@ -7,6 +7,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import jakarta.validation.Valid;
+
 
 @Controller
 public class FilmController {
@@ -25,15 +28,21 @@ public class FilmController {
 	}
 
 	@RequestMapping(value = "add-film", method = RequestMethod.GET)
-	public String showNewFilm() {
+	public String showNewFilm(ModelMap model) 
+	{ 
+		Film film = new Film(0, "New film",2017, "Sample", "Testing Stars", "sample Reviews are here!" );
+		model.put("film", film);
 		return "film";
 	}
 
 	@RequestMapping(value = "add-film", method = RequestMethod.POST)
-	public String addNewFilm(@RequestParam String title, String review, String stars, int year, ModelMap model) {
-		filmService.addFilm(title, year, title, stars, review);
-
+	public String addNewFilm( ModelMap model, @Valid Film film, BindingResult result) {
+		if (result.hasErrors()) {
+			return "film";
+		}
+		filmService.addFilm(film.getTitle(), film.getYear(), film.getDirector(), film.getStar(), film.getReview());
 		return "redirect:film-list";
+
 	}
 
 	@RequestMapping("delete-film")
@@ -42,12 +51,18 @@ public class FilmController {
 		return "redirect:film-list";
 	}
 
-	@RequestMapping("update-film")
-	public String updateFilm(@RequestParam int id, ModelMap model) {
-		Film film = filmService.findFilmById(id);
-		filmService.updateById(id);
-		model.addAttribute("film", film);
-		return "film";
-	}
-
+//	@RequestMapping(value = "update-film", method = RequestMethod.GET)
+//	public String showUpdateFilm(@RequestParam int id, ModelMap model) {
+//		return "film";
+//	}
+//	
+//	@RequestMapping(value = "update-film", method = RequestMethod.POST)
+//	public String updateFilm(ModelMap model, @Valid Film film, BindingResult result) {
+//		if (result.hasErrors()) {
+//			return "film";
+//		}
+//		filmService.addFilm(film.getTitle(), film.getYear(), film.getDirector(), film.getStars(), film.getReview());
+//		return "redirect:film-list";
+//	}
+	
 }

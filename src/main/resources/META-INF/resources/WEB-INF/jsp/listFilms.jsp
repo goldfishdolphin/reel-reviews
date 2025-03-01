@@ -31,7 +31,7 @@
 						<td>${film.title}</td>
 						<td>${film.year}</td>
 						<td>${film.director}</td>
-						<td>${film.stars}</td>
+						<td>${film.star}</td>
 						<td>${film.review}</td>
 						<td><a href="delete-film?id=${film.id}"
 							class="btn btn-warning">Delete</a></td>
